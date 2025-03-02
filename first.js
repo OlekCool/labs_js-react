@@ -1,122 +1,41 @@
+// 2 lab
+
+// -------------------------------------------------------2.1-------------------------------------
+// let numberOfFilms = 3;
+// let personalMovieDB = {
+//     count: numberOfFilms,
+//     movies: {"Forrest Gump": 8, "Sonic": 9, "The Matrix": 7.4},
+//     actors: {"Tom Hanks": true},
+//     genres: [],
+//     privat: true,
+// };
+//
+// function showMyDB() {
+//     if (personalMovieDB.privat === false) {
+//         return personalMovieDB;
+//     }
+// }
+//
+// console.log(showMyDB());
+
+// -------------------------------------------------------2.2-------------------------------------
 const prompt = require("prompt-sync")();
 
-let numberOfFilms;
-while (true) {
-    numberOfFilms = prompt("Скільки фільмів ви вже подивилися? ", "");
-    if (numberOfFilms && !isNaN(parseInt(numberOfFilms))) {
-        numberOfFilms = parseInt(numberOfFilms);
-        break;
-    } else {
-        console.log("Введіть коректне число.");
-    }
-}
-
+let numberOfFilms = 3;
 let personalMovieDB = {
     count: numberOfFilms,
-    movies: {},
-    actors: {},
+    movies: {"Forrest Gump": 8, "Sonic": 9, "The Matrix": 7.4},
+    actors: {"Tom Hanks": true},
     genres: [],
-    privat: false,
+    privat: true,
 };
 
-let i = 0;
-while (i < numberOfFilms) {
-    let title;
-    while (true) {
-        title = prompt("Один із останніх переглянутих фільмів? ", "");
-        if (title && title.length <= 50) {
-            break;
-        } else {
-            console.log("Введіть коректну назву фільму (не порожню та не більше 50 символів).");
-        }
+function writeYourGenres() {
+    for (i = 0; i < 3; i++) {
+        let genre = prompt(`Ваш улюблений жанр під номером ${i + 1}: `);
+        personalMovieDB.genres.push(genre);
     }
-
-    let mark;
-    while (true) {
-        mark = prompt("На скільки оціните його? ", "");
-        if (mark && !isNaN(parseFloat(mark))) {
-            mark = parseFloat(mark);
-            break;
-        } else {
-            console.log("Введіть коректну оцінку (число).");
-        }
-    }
-
-    personalMovieDB.movies[title] = mark;
-    i++;
-
-    console.log("");
 }
 
-if (personalMovieDB.count < 10) {
-    console.log("Вами переглянуто досить мало фільмів");
-} else if (personalMovieDB.count <= 30) {
-    console.log("Ви звичайний глядач");
-} else if (personalMovieDB.count > 30) {
-    console.log("Ви неймовірний кіноман");
-} else {
-    console.log("Ви ввели некоректне значення");
-}
-
-
-
-
-// other cycle variants:
-
-/*
-for (i = 0; i < personalMovieDB.count; i++){
-    let title;
-    while (true) {
-        title = prompt("Один із останніх переглянутих фільмів? ", "");
-        if (title && title.length <= 50) {
-            break;
-        } else {
-            console.log("Введіть коректну назву фільму (не порожню та не більше 50 символів).");
-        }
-    }
-
-    let mark;
-    while (true) {
-        mark = prompt("На скільки оціните його? ", "");
-        if (mark && !isNaN(parseFloat(mark))) {
-            mark = parseFloat(mark);
-            break;
-        } else {
-            console.log("Введіть коректну оцінку (число).");
-        }
-    }
-
-    personalMovieDB.movies[title] = mark;
-
-    console.log("");
-}
-
-do {
-    let title;
-    while (true) {
-        title = prompt("Один із останніх переглянутих фільмів? ", "");
-        if (title && title.length <= 50) {
-            break;
-        } else {
-            console.log("Введіть коректну назву фільму (не порожню та не більше 50 символів).");
-        }
-    }
-
-    let mark;
-    while (true) {
-        mark = prompt("На скільки оціните його? ", "");
-        if (mark && !isNaN(parseFloat(mark))) {
-            mark = parseFloat(mark);
-            break;
-        } else {
-            console.log("Введіть коректну оцінку (число).");
-        }
-    }
-
-    personalMovieDB.movies[title] = mark;
-    i++;
-
-    console.log("");
-} while (i < numberOfFilms);
-
- */
+writeYourGenres();
+console.log(personalMovieDB);
